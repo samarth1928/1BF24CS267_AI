@@ -1,0 +1,25 @@
+from itertools import product
+
+def TT_ENTAILS(KB, alpha, symbols):
+    print ("Samarth Joshi_1BF24CS267")
+    for values in product([True, False], repeat=len(symbols)):
+        model = dict(zip(symbols, values))
+
+        if KB(model) and not alpha(model):
+            return False
+
+    return True
+
+
+symbols = ['A', 'B', 'C']
+
+def KB(m):
+    return (m['A'] or m['C']) and (m['B'] or not m['C'])
+
+def alpha(m):
+    return m['A'] or m['B']
+
+if TT_ENTAILS(KB, alpha, symbols):
+    print("KB entails alpha")
+else:
+    print("KB does not entail alpha")
